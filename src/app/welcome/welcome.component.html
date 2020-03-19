@@ -1,0 +1,28 @@
+<h1>Welcome !</h1>
+<div class="container">
+  Welcome {{name}} to Doc appoint.
+</div>
+ 
+<div class="container">
+  You can manage your Todos <a routerLink="/todos">here</a>
+</div>
+
+<div class="container">
+ click here to get a customised welcome message
+ <button (click)="getWelcomeMessage()" class="btn btn-primary">Get Welcome Message</button>
+</div>
+
+<div class="container">
+  click here to get a customised welcome message with username
+  <button (click)="getWelcomeMessageWithParameter()" class="btn btn-primary">Get Welcome Message</button>
+ </div>
+
+ <div class="container" *ngIf="welcomeMessageFromService">
+  <h2>Your customised welcome message</h2>
+  {{welcomeMessageFromService}}
+</div>
+
+<div class="container" *ngIf="errorMessageFromService">
+  <h2>Something Went wrong while calling web service</h2>
+  {{errorMessageFromService}}
+</div>
