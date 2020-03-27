@@ -10,8 +10,10 @@ import { WelcomeDataService } from '../service/data/welcome-data.service';
 export class WelcomeComponent implements OnInit {
 
   name=''
-  welcomeMessageFromService : string
+  usernameFromService : string
   errorMessageFromService : string
+
+  userRoleFromService=sessionStorage.getItem('user_role');
 
   //ActivatedRoute
   constructor(private route : ActivatedRoute,
@@ -36,7 +38,8 @@ export class WelcomeComponent implements OnInit {
  }
 
   handleSuccfulResponse(response){
-    this.welcomeMessageFromService=response.message
+    this.usernameFromService=response.username
+    this.userRoleFromService=response.user_role
   }
 
   handleErrorResponse(error){

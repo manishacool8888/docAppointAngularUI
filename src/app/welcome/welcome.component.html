@@ -17,9 +17,10 @@
   <button (click)="getWelcomeMessageWithParameter()" class="btn btn-primary">Get Welcome Message</button>
  </div>
 
- <div class="container" *ngIf="welcomeMessageFromService">
-  <h2>Your customised welcome message</h2>
-  {{welcomeMessageFromService}}
+ <div class="container" *ngIf="userRoleFromService">
+  <h2>Response from service</h2>
+   username : {{usernameFromService}}
+   userRole : {{userRoleFromService}}
 </div>
 
 <div class="container" *ngIf="errorMessageFromService">

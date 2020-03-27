@@ -5,6 +5,7 @@ import { API_URL } from '../app.constants';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
+export const USER_ROLE = 'user_role';
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +22,13 @@ export class BasicAuthenticationService {
       Authorization : basicAuthHeaderString
     })
 
-    return this.http.get<AuthenticationBean>(`${API_URL}/basicauth`,
+    return this.http.get<AuthenticationBean>(`${API_URL}/api/login/${username}`,
     {headers}).pipe(
       map(
         data => {
           sessionStorage.setItem(AUTHENTICATED_USER,username)
           sessionStorage.setItem(TOKEN,basicAuthHeaderString)
+          sessionStorage.setItem(USER_ROLE,data.user_role)
           return data;
         }
       )
@@ -56,5 +58,6 @@ export class BasicAuthenticationService {
 }
 
 export class AuthenticationBean{
-  constructor(public message:string){}
+  constructor(public username:string,
+              public user_role:string){}
 }
