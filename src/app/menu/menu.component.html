@@ -3,13 +3,18 @@
   <nav class ="navbar navbar-expand-md navbar-dark bg-dark">
    
     <ul class="navbar-nav">
-      <li><a routerLink="/welcome/prnjn" class="nav-link">Home</a></li>
-      <li><a routerLink="/todos" class="nav-link">Todos</a></li>
+      <li><a *ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/docAppointHome/" class="nav-link">Home</a></li>
+      <li><a *ngIf="basicAuthenticationService.isUserPatient()" routerLink="/patientHome/" class="nav-link">Home</a></li>
+      <li><a *ngIf="basicAuthenticationService.isUserDoctor()" routerLink="/doctorHome/" class="nav-link">Home</a></li>
+      <li><a routerLink="/aboutUs" class="nav-link">About Us</a></li>
+      <li><a routerLink="/contactUs" class="nav-link">Contact Us</a></li>
+      <li><a routerLink="/register" class="nav-link">Register</a></li>
     </ul> 
    
     <ul class="navbar-nav navbar-collapse justify-content-end">
-      <li><a *ngIf="!hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
-      <li><a *ngIf="hardcodedAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
+      <li><a *ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+      <li><a *ngIf="!basicAuthenticationService.isUserLoggedIn()" routerLink="/login" class="nav-link">Register</a></li>
+      <li><a *ngIf="basicAuthenticationService.isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
     </ul> 
   </nav>
 </header>

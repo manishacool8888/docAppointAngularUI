@@ -51,10 +51,23 @@ export class BasicAuthenticationService {
     return !(user===null)
   }
 
+  isUserPatient(){
+    let patient = sessionStorage.getItem(USER_ROLE)
+
+    return (patient==='ROLE_PATIENT');
+  }
+
+  isUserDoctor(){
+    let doctor = sessionStorage.getItem(USER_ROLE)
+    return (doctor==='ROLE_DOCTOR');
+  }
+
   logout(){
     sessionStorage.removeItem(AUTHENTICATED_USER);
+    sessionStorage.removeItem(USER_ROLE);
     sessionStorage.removeItem(TOKEN);
   }
+
 }
 
 export class AuthenticationBean{
