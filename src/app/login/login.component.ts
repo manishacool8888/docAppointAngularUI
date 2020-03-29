@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(){
-    // if(this.userName=='prnjn' && this.password=='Dragon')
-    if(this.hardcodedAuthenticationService.authenticate(this.userName,this.password)){
+     if(this.userName=='prnjn' && this.password=='Dragon'){
+   // if(this.hardcodedAuthenticationService.authenticate(this.userName,this.password)){
 
       this.router.navigate(['welcome',this.userName])
       this.invalidLogin=false;
@@ -36,18 +36,23 @@ export class LoginComponent implements OnInit {
   }
 
   handleBasicAuthLogin(){
-    // if(this.userName=='prnjn' && this.password=='Dragon')
-    this.basicAuthenticationService.executeAuthenticationService(this.userName,this.password)
-        .subscribe(
-          data => {
-            console.log(data)
-            this.router.navigate(['welcome',this.userName])
-            this.invalidLogin=false;
-          },
-          error => {
-            console.log(error)
-            this.invalidLogin=true
-          }
-        )
+    if(this.userName=='prnjn' && this.password=='Dragon'){
+      this.router.navigate(['patientHome'])
+      this.invalidLogin=false;
+    }else{
+      this.invalidLogin=true
+    }
+    // this.basicAuthenticationService.executeAuthenticationService(this.userName,this.password)
+    //     .subscribe(
+    //       data => {
+    //         console.log(data)
+    //         this.router.navigate(['welcome',this.userName])
+    //         this.invalidLogin=false;
+    //       },
+    //       error => {
+    //         console.log(error)
+    //         this.invalidLogin=true
+    //       }
+    //     )
   }
 }

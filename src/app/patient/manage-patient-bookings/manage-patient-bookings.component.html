@@ -1,0 +1,34 @@
+<div class="manage-patient-booking-container">
+  <h5>{{user_first_name}}'s Bookings</h5>
+  <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+  
+  <div class="container">
+    <table class="table">
+      <caption>My Todo's</caption>
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Doctor Name</th>
+          <th>Speciality</th>
+          <th>Booking Date</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of appointBookingItems">
+          <td>{{booking.bookingId}}</td>
+          <td>{{booking.doctorName}}</td>
+          <td>{{booking.speciality}}</td>
+          <td>{{todo.bookingDate | date | uppercase}}</td>
+          <td>{{todo.startTime}}</td>
+          <td>{{todo.endTime}}</td>
+          <td><button (click)="deleteBooking(booking.bookingId)" class="btn btn-warning">Cancel Booking</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ </div> 
+
+
+

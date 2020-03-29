@@ -1,10 +1,24 @@
 
-<h1>Login!</h1>
-<div class="container">
-    <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-    User Name : <input type="text" name="userName" [(ngModel)]="userName">
-    Password : <input type="password" name="userPassword" [(ngModel)]="password">
+<h3>Login!</h3>
+<div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
 
-    <!-- <button (click)=handleLogin() class="btn btn-primary">Login</button> -->
-    <button (click)=handleBasicAuthLogin() class="btn btn-primary">Login</button>
-</div>
+<form (ngSubmit)="!loginForm.invalid && handleBasicAuthLogin()" #loginForm="ngForm">
+    <div class="login-container">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="email"  class="form-control"  id="username" name="username" [(ngModel)]="userName">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password"  class="form-control"  id="password" name="userPassword" [(ngModel)]="password">
+        </div>
+        
+        <!-- User Name : <input type="text" name="userName" [(ngModel)]="userName">
+        Password : <input type="password" name="userPassword" [(ngModel)]="password"> -->
+
+        <!-- <button (click)=handleLogin() class="btn btn-primary">Login</button> -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-info mx-3">Login</button>
+        </div>
+    </div>
+</form>

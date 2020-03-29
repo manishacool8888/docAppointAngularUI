@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators'
-import { API_URL } from '../app.constants';
+import { API_URL, USER_ROLE, USER_FIRST_NAME } from '../app.constants';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
-export const USER_ROLE = 'user_role';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +28,7 @@ export class BasicAuthenticationService {
           sessionStorage.setItem(AUTHENTICATED_USER,username)
           sessionStorage.setItem(TOKEN,basicAuthHeaderString)
           sessionStorage.setItem(USER_ROLE,data.user_role)
+          sessionStorage.setItem(USER_FIRST_NAME,data.user_first_name)
           return data;
         }
       )
@@ -72,5 +72,6 @@ export class BasicAuthenticationService {
 
 export class AuthenticationBean{
   constructor(public username:string,
-              public user_role:string){}
+              public user_role:string,
+              public user_first_name:string){}
 }

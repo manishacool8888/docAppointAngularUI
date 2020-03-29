@@ -23,6 +23,11 @@ import { PatientHomeComponent } from './patient/patient-home/patient-home.compon
 import { DoctorHomeComponent } from './doctor/doctor-home/doctor-home.component';
 import { RegisterComponent } from './register/register.component';
 import { DoctorRegistrationComponent } from './doctor/doctor-registration/doctor-registration.component';
+import { SpecialityComponent } from './speciality/speciality.component';
+import { SearchDoctorComponent } from './patient/search-doctor/search-doctor.component';
+import { ManagePatientBookingsComponent } from './patient/manage-patient-bookings/manage-patient-bookings.component';
+import { ManagePatientProfileComponent } from './patient/manage-patient-profile/manage-patient-profile.component';
+import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
 
 
 @NgModule({
@@ -45,7 +50,12 @@ import { DoctorRegistrationComponent } from './doctor/doctor-registration/doctor
     PatientNavBarComponent,
     DoctorNavBarComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    SpecialityComponent,
+    SearchDoctorComponent,
+    ManagePatientBookingsComponent,
+    ManagePatientProfileComponent,
+    BookAppointmentComponent
   ],
   imports: [
     BrowserModule,

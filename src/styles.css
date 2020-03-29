@@ -1,2 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
-@import url(https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css)
+@import url(https://unpkg.com/bootstrap@4.4.1/dist/css/bootstrap.min.css);
+
+.app-container{
+	width:85%;
+	margin:auto;
+	overflow:hidden;
+}
+
+.patient-component-container{
+    width:90%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    border:1px #5bc0de solid;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+	border-radius:15px;
+}
+
+.app-button{
+	background-color:#333;
+	color:#fff;
+	margin:15%;
+	padding:10px 15px;
+	border-radius:15px;
+}
+
+.app-button:hover{
+	background:green;
+	color:#fff;
+}
+
+.clr{
+	clear:both;
+}
+
+@media(max-width:600px){
+	#main{
+		width:100%;
+		float:none;
+	}
+
+	#sidebar{
+		width:100%;
+		float:none;
+    }
+}
