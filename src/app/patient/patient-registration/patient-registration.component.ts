@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
+import { PatientServiceService } from 'src/app/service/patient/patient-service.service';
 
 export class PatientRegDetails {
   constructor(
@@ -20,21 +22,60 @@ export class PatientRegDetails {
   }
 }
 
-patientDetails : PatientRegDetails
+export class PatientRegistrationResponse {
+  constructor(public username : string,
+              public user_role :string,
+              public isRegistrationSuccess : boolean){ }
+}
 
 @Component({
-  selector: 'app-user-registration',
+  // selector: 'app-user-registration',
+  selector: 'app-patient-registration',
   templateUrl: './patient-registration.component.html',
   styleUrls: ['./patient-registration.component.css']
 })
 export class PatientRegistrationComponent implements OnInit {
+  
+  patientDetails : PatientRegDetails
+  stateList : string[];
+  cityList : string[];
+  repassword : string='';
+  isRegistrationDone = false;
+  registrationResponse :PatientRegistrationResponse;
 
-  constructor() { }
+  constructor(private docAppointService:DocAppointCommonService,
+              private patientService : PatientServiceService) { }
 
   ngOnInit() {
+    this.patientDetails = new PatientRegDetails('','','','',new Date(),'','','','','','','','','');
+    this.getStateList();
+  }
+
+  getStateList(){
+    this.docAppointService.retrieveStates().subscribe(
+      response => {
+        this.stateList=response;
+      }
+    )
+  }
+
+  getcityList(state){
+    this.docAppointService.retrieveCity(state).subscribe(
+      response => {
+        this.cityList=response;
+        console.log("cityList is :"+this.cityList);
+      }
+    )
   }
 
   registerPatient(){
-
+    console.log("registerPatient called");
+    this.patientService.registerPatient(this.patientDetails).subscribe(
+      response => {
+        this.registrationResponse=response;
+        this.isRegistrationDone = response.isRegistrationSuccess;
+        console.log("Patient Registration is successful");
+      }
+    )
   }
 }

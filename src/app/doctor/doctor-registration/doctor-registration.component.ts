@@ -10,6 +10,7 @@ export class DoctorRegistrationComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log("DoctorRegistrationComponent init")
   }
 
 }

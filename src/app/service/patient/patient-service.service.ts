@@ -2,11 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from 'src/app/app.constants';
 import { PatientAppointBookings } from 'src/app/patient/manage-patient-bookings/manage-patient-bookings.component';
-
-export class PatientRegistrationResponse{
-  constructor(public username : string,
-              public user_role :string){ }
-}
+import { PatientRegistrationResponse } from 'src/app/patient/patient-registration/patient-registration.component';
 
 @Injectable({
   providedIn: 'root'

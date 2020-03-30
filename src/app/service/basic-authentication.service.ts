@@ -5,6 +5,7 @@ import { API_URL, USER_ROLE, USER_FIRST_NAME } from '../app.constants';
 
 export const TOKEN = 'token';
 export const AUTHENTICATED_USER = 'authenticatedUser';
+export const ENABLED_USER = 'enabled_user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,7 @@ export class BasicAuthenticationService {
         data => {
           sessionStorage.setItem(AUTHENTICATED_USER,username)
           sessionStorage.setItem(TOKEN,basicAuthHeaderString)
+          sessionStorage.setItem(ENABLED_USER,data.isEnabled)
           sessionStorage.setItem(USER_ROLE,data.user_role)
           sessionStorage.setItem(USER_FIRST_NAME,data.user_first_name)
           return data;
@@ -73,5 +75,6 @@ export class BasicAuthenticationService {
 export class AuthenticationBean{
   constructor(public username:string,
               public user_role:string,
+              public isEnabled:string,
               public user_first_name:string){}
 }

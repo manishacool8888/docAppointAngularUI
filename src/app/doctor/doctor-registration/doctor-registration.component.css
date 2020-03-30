@@ -1,0 +1,12 @@
+.register-doctor-container{
+    width:90%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    border:1px #5bc0de solid;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+	border-radius:15px;
+}

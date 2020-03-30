@@ -1,3 +1,20 @@
-.ng-invalid:not(form){
+/* .ng-invalid:not(form){
     border-left: 5px solid red;
+} */
+
+.register-patient-container{
+    width:60%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    border:1px #5bc0de solid;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    padding-right: 40px;
+	border-radius:15px;
+}
+
+h5{
+    color:#6463c0;
 }
