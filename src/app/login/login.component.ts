@@ -51,10 +51,11 @@ export class LoginComponent implements OnInit {
             console.log("user role from service="+data.user_role)
             console.log("user role from constant="+ROLE_PATIENT)
             if(data.user_role===ROLE_PATIENT){
-              this.router.navigate(['patientHome',this.userName])
+              console.log("navigating to patient home"+data.user_role)
+              this.router.navigate(['patientHome'])
               this.invalidLogin=false;
             }else if(data.user_role===ROLE_DOCTOR){
-              this.router.navigate(['doctorHome',this.userName])
+              this.router.navigate(['doctorHome'])
               this.invalidLogin=false;
             }else{
               console.log("user role is :"+data.user_role);

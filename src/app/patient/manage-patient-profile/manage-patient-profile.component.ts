@@ -49,7 +49,9 @@ export class ManagePatientProfileComponent implements OnInit {
               private patientService : PatientServiceService) { }
 
   ngOnInit() {
+    this.profileDetails = new ProfileDetails(this.username,'','',new Date(),'','','','','','','','','');
     this.getProfileDetails();
+    
   }
 
   getProfileDetails(){
@@ -57,6 +59,8 @@ export class ManagePatientProfileComponent implements OnInit {
     this.patientService.getPatientProfile(this.username).subscribe(
       response => {
         this.profileDetails=response;
+        this.getStateList();
+        this.getcityList(this.profileDetails.state);
       },
       error => {
         console.log(error)
