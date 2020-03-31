@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { API_URL } from 'src/app/app.constants';
 import { PatientAppointBookings } from 'src/app/patient/manage-patient-bookings/manage-patient-bookings.component';
 import { PatientRegistrationResponse } from 'src/app/patient/patient-registration/patient-registration.component';
+import { ProfileDetails, ProfileUpdateResponse } from 'src/app/patient/manage-patient-profile/manage-patient-profile.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,11 +37,24 @@ export class PatientServiceService {
     return this.http.post<PatientRegistrationResponse>(`${API_URL}/api/public/register_patient`,patientDetails)
   }
 
-  retrieveBookings(username){
-    return this.http.get<PatientAppointBookings[]>(`${API_URL}/users/${username}/todos`)
+  getPatientProfile(username){
+    return this.http.get<ProfileDetails>(`${API_URL}/api/patient/getBookings${username}`)
   }
 
-  deleteBookings(username,id){
-    return this.http.delete(`${API_URL}/users/todos/${id}`)
+  updatePatientProfile(profileDetails){
+    return this.http.post<ProfileUpdateResponse>(`${API_URL}/api/patient/updateProfile`,profileDetails)
   }
+
+  retrieveAllBookings(username){
+    return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/getBookings${username}`)
+  }
+
+  deleteBookings(username,booking_id){
+    return this.http.delete(`${API_URL}/api/patient/${username}/deleteBooking/${booking_id}`)
+  }
+
+  disableAccount(username){
+    return this.http.get<string>(`${API_URL}/api/patient/${username}/disableAccount`)
+  }
+
 }

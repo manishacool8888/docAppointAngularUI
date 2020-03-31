@@ -1,5 +1,5 @@
 .manage-patient-profile-container{
-    width:90%;
+    width:50%;
     margin:auto;
     margin-bottom: 10px;
     /* overflow:hidden; */
@@ -9,4 +9,23 @@
     padding-left: 10px;
     padding-right: 10px;
 	border-radius:15px;
+}
+
+.edit-button{
+	background-color:grey;
+	color:#fff;
+    margin:5px;
+    margin-right: 10%;
+	padding:5px;
+	border-radius:50px;
+	/*border:none;*/
+}
+
+.edit-button:hover{
+	background:rgb(192, 40, 13);
+	color:#fff;
+}
+
+h5{
+    color:#6463c0;
 }

@@ -55,6 +55,9 @@ export class PatientRegistrationComponent implements OnInit {
     this.docAppointService.retrieveStates().subscribe(
       response => {
         this.stateList=response;
+      },
+      error => {
+        console.log(error)
       }
     )
   }
@@ -64,6 +67,9 @@ export class PatientRegistrationComponent implements OnInit {
       response => {
         this.cityList=response;
         console.log("cityList is :"+this.cityList);
+      },
+      error => {
+        console.log(error)
       }
     )
   }
@@ -75,6 +81,9 @@ export class PatientRegistrationComponent implements OnInit {
         this.registrationResponse=response;
         this.isRegistrationDone = response.isRegistrationSuccess;
         console.log("Patient Registration is successful");
+      },
+      error => {
+        console.log(error)
       }
     )
   }

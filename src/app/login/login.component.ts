@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HardcodedAuthenticationService } from '../service/hardcoded-authentication.service';
 import { BasicAuthenticationService } from '../service/basic-authentication.service';
+import { ROLE_PATIENT, ROLE_DOCTOR } from '../app.constants';
 
 @Component({
   selector: 'app-login',
@@ -36,23 +37,33 @@ export class LoginComponent implements OnInit {
   }
 
   handleBasicAuthLogin(){
-    if(this.userName=='prnjn' && this.password=='Dragon'){
-      this.router.navigate(['patientHome'])
-      this.invalidLogin=false;
-    }else{
-      this.invalidLogin=true
-    }
-    // this.basicAuthenticationService.executeAuthenticationService(this.userName,this.password)
-    //     .subscribe(
-    //       data => {
-    //         console.log(data)
-    //         this.router.navigate(['welcome',this.userName])
-    //         this.invalidLogin=false;
-    //       },
-    //       error => {
-    //         console.log(error)
-    //         this.invalidLogin=true
-    //       }
-    //     )
+    // if(this.userName=='prnjn' && this.password=='Dragon'){
+    //   this.router.navigate(['patientHome'])
+    //   this.invalidLogin=false;
+    // }else{
+    //   this.invalidLogin=true
+    // }
+
+    this.basicAuthenticationService.executeAuthenticationService(this.userName,this.password)
+        .subscribe(
+          data => {
+            console.log(data)
+
+            if(data.user_role===ROLE_PATIENT){
+              this.router.navigate(['patientHome',this.userName])
+              this.invalidLogin=false;
+            }else if(data.user_role===ROLE_DOCTOR){
+              this.router.navigate(['doctorHome',this.userName])
+              this.invalidLogin=false;
+            }else{
+              console.log("user role is :"+data.user_role);
+              this.invalidLogin=true
+            }
+          },
+          error => {
+            console.log(error)
+            this.invalidLogin=true
+          }
+        )
   }
 }

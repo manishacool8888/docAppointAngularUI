@@ -9,7 +9,7 @@ export class PatientAppointBookings {
               public speciality : boolean,
               public bookingDate : Date,
               public startTime : string,
-              public endTime:string){
+              public endTime : string){
   }
 }
 
@@ -32,9 +32,12 @@ export class ManagePatientBookingsComponent implements OnInit {
  }
 
  refreshBookings(){
-   this.patientService.retrieveBookings(this.username).subscribe(
+   this.patientService.retrieveAllBookings(this.username).subscribe(
      response => {
        this.appointBookingItems = response
+     },
+     error => {
+       console.log(error)
      }
    )
  }
@@ -47,7 +50,10 @@ export class ManagePatientBookingsComponent implements OnInit {
        this.message= `Delete of Todo ${id} Successful !`
 
        this.refreshBookings();
-     } 
+     },
+     error => {
+       console.log(error)
+     }
    )
  }
 
