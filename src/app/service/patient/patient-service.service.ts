@@ -38,7 +38,7 @@ export class PatientServiceService {
   }
 
   getPatientProfile(username){
-    return this.http.get<ProfileDetails>(`${API_URL}/api/patient/getBookings${username}`)
+    return this.http.get<ProfileDetails>(`${API_URL}/api/patient/patientProfile${username}`)
   }
 
   updatePatientProfile(profileDetails){

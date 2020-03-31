@@ -48,7 +48,8 @@ export class LoginComponent implements OnInit {
         .subscribe(
           data => {
             console.log(data)
-
+            console.log("user role from service="+data.user_role)
+            console.log("user role from constant="+ROLE_PATIENT)
             if(data.user_role===ROLE_PATIENT){
               this.router.navigate(['patientHome',this.userName])
               this.invalidLogin=false;
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
             }
           },
           error => {
+            console.log("Error occured while login");
             console.log(error)
             this.invalidLogin=true
           }
