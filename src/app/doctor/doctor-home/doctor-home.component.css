@@ -1,0 +1,12 @@
+.doctor-menu-container{
+    width:80%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    border:1px #5bc0de solid;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+	border-radius:15px;
+}

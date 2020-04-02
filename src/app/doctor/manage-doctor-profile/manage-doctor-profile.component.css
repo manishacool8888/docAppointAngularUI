@@ -1,0 +1,31 @@
+.manage-doctor-profile-container{
+    width:50%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    border:1px #5bc0de solid;
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+	border-radius:15px;
+}
+
+.edit-button{
+	background-color:grey;
+	color:#fff;
+    margin:5px;
+    margin-right: 10%;
+	padding:5px;
+	border-radius:50px;
+	/*border:none;*/
+}
+
+.edit-button:hover{
+	background:rgb(192, 40, 13);
+	color:#fff;
+}
+
+h5{
+    color:#6463c0;
+}

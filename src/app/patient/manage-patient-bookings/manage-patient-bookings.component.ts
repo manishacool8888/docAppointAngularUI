@@ -4,12 +4,16 @@ import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service
 import { USER_FIRST_NAME } from 'src/app/app.constants';
 
 export class PatientAppointBookings {
-  constructor(public bookingId : number,
-              public doctorName : string,
-              public speciality : boolean,
-              public bookingDate : Date,
-              public startTime : string,
-              public endTime : string){
+  constructor(public booking_id : number,
+              public first_name : string, //first name of patient
+              public speciality_name : boolean,
+              public booking_date : Date,
+              public start_time : string,
+              public end_time : string,
+              public meridiem_indicator : string,
+              public symptom_desc : string,
+              public cancelled : string,
+              public cancelled_by : string){
   }
 }
 
@@ -20,6 +24,7 @@ export class PatientAppointBookings {
 })
 
 export class ManagePatientBookingsComponent implements OnInit {
+
   message : string
   appointBookingItems: PatientAppointBookings[]
   username = sessionStorage.getItem(AUTHENTICATED_USER)
@@ -44,7 +49,7 @@ export class ManagePatientBookingsComponent implements OnInit {
 
  deleteBooking(id){
    console.log(`delete todo ${id}`)
-   this.patientService.deleteBookings(this.username,id).subscribe(
+   this.patientService.deleteBooking(this.username,id).subscribe(
      response => {
        console.log(response)
        this.message= `Delete of Todo ${id} Successful !`

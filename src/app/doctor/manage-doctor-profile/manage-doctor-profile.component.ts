@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-export class DoctorRegDetails {
+export class ProfileDetails {
   constructor(
     public doctor_id : string,
-    public password : string,
     public first_name :string,
     public last_name : string,
     public date_of_birth : Date,
@@ -20,23 +19,22 @@ export class DoctorRegDetails {
   }
 }
 
-export class DoctorRegistrationResponse {
+export class ProfileUpdateResponse {
   constructor(public username : string,
-              public user_role :string,
-              public isRegistrationSuccess : boolean){ }
+              public profileUpdated :string
+              ){ }
 }
 
 @Component({
-  selector: 'app-doctor-registration',
-  templateUrl: './doctor-registration.component.html',
-  styleUrls: ['./doctor-registration.component.css']
+  selector: 'app-manage-doctor-profile',
+  templateUrl: './manage-doctor-profile.component.html',
+  styleUrls: ['./manage-doctor-profile.component.css']
 })
-export class DoctorRegistrationComponent implements OnInit {
+export class ManageDoctorProfileComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
-    console.log("DoctorRegistrationComponent init")
   }
 
 }

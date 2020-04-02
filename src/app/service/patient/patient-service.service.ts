@@ -31,7 +31,7 @@ export class PatientServiceService {
   // }
 
   //retrieveBookings
-//deleteBookings
+  //deleteBookings
 
   registerPatient(patientDetails){
     return this.http.post<PatientRegistrationResponse>(`${API_URL}/api/public/register_patient`,patientDetails)
@@ -49,7 +49,7 @@ export class PatientServiceService {
     return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/getBookings${username}`)
   }
 
-  deleteBookings(username,booking_id){
+  deleteBooking(username,booking_id){
     return this.http.delete(`${API_URL}/api/patient/${username}/deleteBooking/${booking_id}`)
   }
 

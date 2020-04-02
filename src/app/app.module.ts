@@ -28,6 +28,10 @@ import { SearchDoctorComponent } from './patient/search-doctor/search-doctor.com
 import { ManagePatientBookingsComponent } from './patient/manage-patient-bookings/manage-patient-bookings.component';
 import { ManagePatientProfileComponent } from './patient/manage-patient-profile/manage-patient-profile.component';
 import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
+import { ManageDoctorBookingsComponent } from './doctor/manage-doctor-bookings/manage-doctor-bookings.component';
+import { ManageDoctorBookingSlotComponent } from './doctor/manage-doctor-booking-slot/manage-doctor-booking-slot.component';
+import { ManageDoctorProfileComponent } from './doctor/manage-doctor-profile/manage-doctor-profile.component';
+import { AddSlotComponent } from './doctor/add-slot/add-slot.component';
 
 
 @NgModule({
@@ -55,7 +59,11 @@ import { BookAppointmentComponent } from './patient/book-appointment/book-appoin
     SearchDoctorComponent,
     ManagePatientBookingsComponent,
     ManagePatientProfileComponent,
-    BookAppointmentComponent
+    BookAppointmentComponent,
+    ManageDoctorBookingsComponent,
+    ManageDoctorBookingSlotComponent,
+    ManageDoctorProfileComponent,
+    AddSlotComponent
   ],
   imports: [
     BrowserModule,

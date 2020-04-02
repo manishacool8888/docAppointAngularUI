@@ -3,7 +3,6 @@ import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common
 import { PatientServiceService } from 'src/app/service/patient/patient-service.service';
 import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service';
 
-
 export class ProfileDetails {
   constructor(
     public patient_id : string,

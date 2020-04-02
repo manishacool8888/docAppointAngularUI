@@ -1,0 +1,35 @@
+
+<h3>Add New Time Slot</h3>
+
+<div class="add-slot-container">
+  <!-- <form (ngSubmit)="!addSlotForm.invalid && registerPatient()" #registerPatientForm="ngForm"> -->
+    <form (ngSubmit)="addSlot()" #addSlotForm="ngForm">
+    
+    <div class="container">
+      <h5>Please Enter Start time and End time in hh:mm format eg. 03:45</h5>
+    </div>
+    <!--Enter Start time and End time in hh:mm format eg 03:45 -->
+
+    <div class="form-group">
+      <label>Start Time</label>
+      <input type="text" class="form-control" [(ngModel)]="slotDetails.start_time"
+              name="start_time" required="required" minlength="5" maxlength="5">
+    </div>
+    <div class="form-group">
+      <label>End Time</label>
+      <input type="text" class="form-control" [(ngModel)]="slotDetails.end_time"
+              name="end_time" required="required" minlength="5" maxlength="5">
+    </div>
+    <div class="form-group">
+      <label>AM/PM</label>
+      <select class="form-control" [(ngModel)]="slotDetails.meridiem_indicator"
+             name="meridiem_indicator" required="required">
+             <option>AM</option>
+             <option>PM</option>
+      </select>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-info mx-3">Add Slot</button>
+    </div>
+</div>

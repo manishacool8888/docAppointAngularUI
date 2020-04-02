@@ -1,3 +1,13 @@
-<p>
-  doctor-home works!
-</p>
+<div id="welcome_title">
+  <h3>Welcome Doc. {{user_first_name}} ! </h3>
+</div>
+
+<div class="doctor-menu-container">
+  <button class="btn btn-info mx-5" (click)=manageBookings()>Manage Bookings</button>
+  <button class="btn btn-info mx-5" (click)=manageBookingSlots()>Manage Booking Slots</button>
+  <button class="btn btn-info mx-5" (click)=manageProfile()>Manage Profile</button>
+</div>
+
+<app-manage-doctor-bookings *ngIf="showManageBookingsComp"></app-manage-doctor-bookings>
+<app-manage-doctor-booking-slot *ngIf="showManageBookingSlotsComp"></app-manage-doctor-booking-slot>
+<app-manage-doctor-profile *ngIf="showManageProfileComponent"></app-manage-doctor-profile>

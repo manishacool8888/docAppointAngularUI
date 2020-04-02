@@ -1,0 +1,40 @@
+<div class="manage-booking-slot-container">
+  <h5>Manage Booking Slots</h5>
+  
+  <div class="container">
+    <div class="alert alert-success" *ngIf='slotAdded'>New Time Slot is added</div>
+
+    <table class="table">
+      <caption>My Booking Slots</caption>
+      <thead>
+        <tr>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>AM/PM</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let slot of bookingSlots">
+          <td>{{slot.start_time}}</td>
+          <td>{{slot.end_time}}</td>
+          <td>{{slot.meridiem_indicator}}</td>
+          <td><button (click)="deleteSlot(slot.slot_id)" class="btn btn-warning">Cancel Booking</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="add-slot-btn-container">
+    <button (click)="AddSlotToggle()" class="add-button">Add Slot</button>
+    <button (click)="AddSlotToggle()" class="cancel-button">Cancel</button>
+  </div>
+
+  <!-- <app-add-slot *ngIf="showAddSlotComp"></app-manage-doctor-bookings> -->
+  <!-- <app-add-slot *ngIf="showAddSlotComp" (outputFromAddSlot)="bookingSlots=$event"></app-manage-doctor-bookings> -->
+
+  <app-add-slot *ngIf="showAddSlotComp" (outputFromAddSlot)="triggerRefreshSlots($event)"></app-manage-doctor-bookings>
+
+</div> 
+
+

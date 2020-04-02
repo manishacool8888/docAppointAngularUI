@@ -17,4 +17,11 @@ export class DocAppointCommonService {
     return this.http.get<string[]>(`${API_URL}/api/public/city/${state}`)
   }
 
+  retrieveLocality(city){
+    return this.http.get<string[]>(`${API_URL}/api/public/locality/${city}`)
+  }
+
+  retrieveSpeciality(){
+    return this.http.get<string[]>(`${API_URL}/api/public/speciality`)
+  }
 }

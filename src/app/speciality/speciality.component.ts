@@ -10,6 +10,7 @@ export class SpecialityComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
