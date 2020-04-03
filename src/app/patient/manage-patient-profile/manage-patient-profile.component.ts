@@ -36,7 +36,7 @@ export class ProfileUpdateResponse {
 export class ManagePatientProfileComponent implements OnInit {
 
   isUpdateSuccess = false;
-  isEditActivated = false;
+  editActivated = false;
   stateList : string[];
   cityList : string[];
 
@@ -104,6 +104,11 @@ export class ManagePatientProfileComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  toggleEdit(){
+    console.log("toggleEdit called")
+    this.editActivated = !this.editActivated;
   }
 
 }
