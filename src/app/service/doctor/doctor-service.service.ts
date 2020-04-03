@@ -42,8 +42,8 @@ export class DoctorServiceService {
     return this.http.post<AddSlotResponse>(`${API_URL}/api/doctor/addSlot`,SlotDetails)
   }
 
-  deleteSlot(username,booking_id){
-    return this.http.delete(`${API_URL}/api/doctor/${username}/deleteSlot/${booking_id}`)
+  deleteSlot(username,slot_id){
+    return this.http.delete(`${API_URL}/api/doctor/${username}/deleteSlot/${slot_id}`)
   }
 
   disableAccount(username){

@@ -50,13 +50,13 @@ export class ManageDoctorBookingSlotComponent implements OnInit {
    }
  }
 
- deleteSlot(id){
-   console.log(`delete slot ${id}`)
-   this.doctorService.deleteSlot(this.username,id).subscribe(
+ deleteSlot(slot_id){
+   console.log(`delete slot ${slot_id}`)
+   this.doctorService.deleteSlot(this.username,slot_id).subscribe(
      response => {
        console.log(response)
 
-       this.message= `Delete of Todo ${id} Successful !`
+       this.message= `Delete of Todo ${slot_id} Successful !`
        this.refreshSlots();
      },
      error => {

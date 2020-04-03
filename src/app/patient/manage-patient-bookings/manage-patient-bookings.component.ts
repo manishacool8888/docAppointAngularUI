@@ -6,7 +6,7 @@ import { USER_FIRST_NAME } from 'src/app/app.constants';
 export class PatientAppointBookings {
   constructor(public booking_id : number,
               public first_name : string, //first name of patient
-              public speciality_name : boolean,
+              public speciality_name : string,
               public booking_date : Date,
               public start_time : string,
               public end_time : string,

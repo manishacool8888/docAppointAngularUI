@@ -46,7 +46,7 @@ export class PatientServiceService {
   }
 
   retrieveAllBookings(username){
-    return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/getBookings${username}`)
+    return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/getBookings/${username}`)
   }
 
   deleteBooking(username,booking_id){
