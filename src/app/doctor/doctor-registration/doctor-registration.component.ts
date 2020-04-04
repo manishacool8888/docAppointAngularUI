@@ -11,6 +11,7 @@ export class DoctorRegDetails {
     public date_of_birth : Date,
     public gender: string,
     public practicing_from : Date,
+    public speciality_name : string,
     public consultation_fee : number,
     public address_line_one : string,
     public address_line_two : string,
@@ -44,6 +45,7 @@ export class DoctorRegistrationComponent implements OnInit {
   stateList : string[];
   cityList : string[];
   localityList : string[];
+  specialityList : string[];
   repassword : string='';
   isRegistrationDone = false;
   registrationResponse :DoctorRegistrationResponse;
@@ -52,8 +54,9 @@ export class DoctorRegistrationComponent implements OnInit {
               private doctorService : DoctorServiceService) { }
 
   ngOnInit() {
-    this.doctorDetails = new DoctorRegDetails('','','','',new Date(),'',new Date(),0,'','','','','','','','','','',new Date());
+    this.doctorDetails = new DoctorRegDetails('','','','',new Date(),'',new Date(),'',0,'','','','','','','','','','',new Date());
     this.getStateList();
+    this.getSpecialityList();
   }
 
   getStateList(){
@@ -91,13 +94,24 @@ export class DoctorRegistrationComponent implements OnInit {
     )
   }
 
-  registerPatient(){
-    console.log("registerPatient called");
+  getSpecialityList(){
+    this.docAppointService.retrieveSpeciality().subscribe(
+      response => {
+        this.specialityList=response;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  registerDoctor(){
+    console.log("registerDoctor called");
     this.doctorService.registerDoctor(this.doctorDetails).subscribe(
       response => {
         this.registrationResponse=response;
         this.isRegistrationDone = response.isRegistrationSuccess;
-        console.log("Patient Registration is successful");
+        console.log("Doctor Registration is successful");
       },
       error => {
         console.log(error)

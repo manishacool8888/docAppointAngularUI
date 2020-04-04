@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from 'src/app/app.constants';
-import { BookingSlots } from 'src/app/doctor/manage-doctor-booking-slot/manage-doctor-booking-slot.component';
+import { SlotDetails } from 'src/app/doctor/manage-doctor-booking-slot/manage-doctor-booking-slot.component';
 import { DocAppointBookings } from 'src/app/doctor/manage-doctor-bookings/manage-doctor-bookings.component';
 import { ProfileUpdateResponse, ProfileDetails } from 'src/app/doctor/manage-doctor-profile/manage-doctor-profile.component';
 import { DoctorRegistrationResponse } from 'src/app/doctor/doctor-registration/doctor-registration.component';
-import { AddSlotResponse } from 'src/app/doctor/add-slot/add-slot.component';
+import { ServiceResponse } from 'src/app/doc-appoint-home/doc-appoint-home.component';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,11 @@ export class DoctorServiceService {
   constructor( private http : HttpClient) { }
 
   registerDoctor(doctorDetails){
-    return this.http.post<DoctorRegistrationResponse>(`${API_URL}/api/public/register_patient`,doctorDetails)
+    return this.http.post<DoctorRegistrationResponse>(`${API_URL}/api/public/register_doctor`,doctorDetails)
   }
 
   getDoctorProfile(username){
-    return this.http.get<ProfileDetails>(`${API_URL}/api/doctor/patientProfile/${username}`)
+    return this.http.get<ProfileDetails>(`${API_URL}/api/doctor/doctorProfile/${username}`)
   }
 
   updateDoctorProfile(profileDetails){
@@ -27,27 +27,27 @@ export class DoctorServiceService {
   }
 
   retrieveAllBookings(username){
-    return this.http.get<DocAppointBookings[]>(`${API_URL}/api/doctor/bookings${username}`)
+    return this.http.get<DocAppointBookings[]>(`${API_URL}/api/doctor/bookings/${username}`)
   }
 
-  deleteBooking(username,booking_id){
-    return this.http.delete(`${API_URL}/api/doctor/${username}/deleteBooking/${booking_id}`)
+  cancelBooking(username,booking_id){
+    return this.http.delete<ServiceResponse>(`${API_URL}/api/doctor/${username}/cancelBooking/${booking_id}`)
   }
 
   retrieveAllSlots(username){
-    return this.http.get<BookingSlots[]>(`${API_URL}/api/doctor/slots${username}`)
+    return this.http.get<SlotDetails[]>(`${API_URL}/api/doctor/slots/${username}`)
   }
 
-  addSlot(SlotDetails){
-    return this.http.post<AddSlotResponse>(`${API_URL}/api/doctor/addSlot`,SlotDetails)
+  addSlot(newSlotDetails){
+    return this.http.post<ServiceResponse>(`${API_URL}/api/doctor/addSlot`,newSlotDetails)
   }
 
   deleteSlot(username,slot_id){
-    return this.http.delete(`${API_URL}/api/doctor/${username}/deleteSlot/${slot_id}`)
+    return this.http.delete<ServiceResponse>(`${API_URL}/api/doctor/${username}/deleteSlot/${slot_id}`)
   }
 
   disableAccount(username){
-    return this.http.get<string>(`${API_URL}/api/doctor/${username}/disableAccount`)
+    return this.http.get<ServiceResponse>(`${API_URL}/api/doctor/disableAccount/${username}`)
   }
 
 }

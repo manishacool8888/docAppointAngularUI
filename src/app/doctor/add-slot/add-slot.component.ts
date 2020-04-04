@@ -2,15 +2,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DoctorServiceService } from 'src/app/service/doctor/doctor-service.service';
 import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service';
 
-export class SlotDetails {
-  constructor(public start_time : string,
+export class NewSlotDetails {
+  constructor(public doctor_id : string,
+              public start_time : string,
               public end_time :string,
               public meridiem_indicator : string
               ){ }
-}
-
-export class AddSlotResponse {
-  constructor(public message : string){ }
 }
 
 @Component({
@@ -20,7 +17,8 @@ export class AddSlotResponse {
 })
 export class AddSlotComponent implements OnInit {
 
-  slotDetails : SlotDetails;
+  newSlotDetails : NewSlotDetails;
+  messageFromWs = '';
   username = sessionStorage.getItem(AUTHENTICATED_USER);
 
   num : number=0;
@@ -30,15 +28,20 @@ export class AddSlotComponent implements OnInit {
   constructor(private doctorService : DoctorServiceService) { }
 
   ngOnInit() {
-    this.slotDetails = new SlotDetails('','','');
+    this.newSlotDetails = new NewSlotDetails(this.username,'','','');
   }
 
   addSlot(){
-    this.doctorService.addSlot(this.slotDetails).subscribe(
+    this.doctorService.addSlot(this.newSlotDetails).subscribe(
       response => {
-        console.log('success response from web service for add slot');
-        console.log(response.message);
-        this.outputFromAddSlot.emit('Y');
+        this.messageFromWs = response.message;
+        console.log('messageFromWs:'+this.messageFromWs);
+
+        if(this.messageFromWs==='success'){
+          this.outputFromAddSlot.emit('Y');
+        }else{
+          this.outputFromAddSlot.emit('N');
+        }
       },
       error => {
         console.log(error);

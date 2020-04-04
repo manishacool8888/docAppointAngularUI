@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service';
 import { DoctorServiceService } from 'src/app/service/doctor/doctor-service.service';
 
-export class BookingSlots {
+export class SlotDetails {
   constructor(public slot_id : number,
               public start_time : string,
               public end_time :string,
@@ -19,10 +19,11 @@ export class BookingSlots {
 export class ManageDoctorBookingSlotComponent implements OnInit {
 
   message : string
-  bookingSlots: BookingSlots[]
+  bookingSlots: SlotDetails[]
   username = sessionStorage.getItem(AUTHENTICATED_USER)
   showAddSlotComp = false;
   slotAdded = false;
+  messageFromWs='';
 
   constructor(private doctorService : DoctorServiceService) { }
 
@@ -55,8 +56,8 @@ export class ManageDoctorBookingSlotComponent implements OnInit {
    this.doctorService.deleteSlot(this.username,slot_id).subscribe(
      response => {
        console.log(response)
-
-       this.message= `Delete of Todo ${slot_id} Successful !`
+       this.messageFromWs = response.message;
+       this.message= `${slot_id} Deleted Successful successfully!`
        this.refreshSlots();
      },
      error => {

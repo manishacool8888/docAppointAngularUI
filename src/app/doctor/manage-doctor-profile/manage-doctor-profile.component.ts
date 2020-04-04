@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service';
+import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
+import { DoctorServiceService } from 'src/app/service/doctor/doctor-service.service';
 
 export class ProfileDetails {
   constructor(
@@ -7,14 +10,20 @@ export class ProfileDetails {
     public last_name : string,
     public date_of_birth : Date,
     public gender: string,
+    public practicing_from : Date,
+    public speciality_name : string,
+    public consultation_fee : number,
     public address_line_one : string,
     public address_line_two : string,
     public state : string,
     public city : string,
+    public locality :string,
     public pincode : string,
     public primary_mobile_number : string,
     public alternate_mobile_number : string,
-    public alternate_email_id : string
+    public alternate_email_id : string,
+    public institute_name : string,
+    public procurement_date : Date
     ){
   }
 }
@@ -32,9 +41,91 @@ export class ProfileUpdateResponse {
 })
 export class ManageDoctorProfileComponent implements OnInit {
 
-  constructor() { }
+  isUpdateSuccess = false;
+  editActivated = false;
+  stateList : string[];
+  cityList : string[];
+  localityList : string[];
+  specialityList : string[];
+
+  doctorDetails : ProfileDetails;
+  profileUpdateResponse : ProfileUpdateResponse;
+  username =  sessionStorage.getItem(AUTHENTICATED_USER);
+  
+  constructor(private docAppointService:DocAppointCommonService,
+              private doctorService : DoctorServiceService) { }
 
   ngOnInit() {
+
+    this.getStateList();
+    this.getSpecialityList();
+  }
+
+  getStateList(){
+    this.docAppointService.retrieveStates().subscribe(
+      response => {
+        this.stateList=response;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  getcityList(state){
+    this.docAppointService.retrieveCity(state).subscribe(
+      response => {
+        this.cityList=response;
+        console.log("cityList is :"+this.cityList);
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  getLocalityList(city){
+    this.docAppointService.retrieveLocality(city).subscribe(
+      response => {
+        this.localityList=response;
+        console.log("localityList is :"+this.cityList);
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  getSpecialityList(){
+    this.docAppointService.retrieveSpeciality().subscribe(
+      response => {
+        this.specialityList=response;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  updateDoctorProfile(){
+    console.log("update Doctor profile called");
+    this.doctorService.updateDoctorProfile(this.doctorDetails).subscribe(
+      response => {
+        this.profileUpdateResponse=response;
+        if('Y'===response.profileUpdated){
+          this.isUpdateSuccess = true;
+        }
+        console.log("Doctor profile update successful");
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  toggleEdit(){
+    console.log("toggleEdit called")
+    this.editActivated = !this.editActivated;
   }
 
 }

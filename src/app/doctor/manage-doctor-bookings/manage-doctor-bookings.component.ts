@@ -27,6 +27,7 @@ export class ManageDoctorBookingsComponent implements OnInit {
   appointBookingItems: DocAppointBookings[]
   username = sessionStorage.getItem(AUTHENTICATED_USER)
   user_first_name = sessionStorage.getItem(USER_FIRST_NAME)
+  messageFromWs = '';
 
   constructor(private doctorService : DoctorServiceService) { }
 
@@ -45,11 +46,12 @@ export class ManageDoctorBookingsComponent implements OnInit {
     )
   }
  
-  deleteBooking(id){
-    console.log(`delete todo ${id}`)
-    this.doctorService.deleteBooking(this.username,id).subscribe(
+  cancelBooking(booking_id){
+    console.log(`cancel booking ${booking_id}`)
+    this.doctorService.cancelBooking(this.username,booking_id).subscribe(
       response => {
         console.log(response);
+        this.messageFromWs = response.message;
         this.refreshBookings();
       },
       error => {

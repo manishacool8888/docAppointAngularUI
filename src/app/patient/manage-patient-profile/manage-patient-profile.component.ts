@@ -98,7 +98,7 @@ export class ManagePatientProfileComponent implements OnInit {
         if('Y'===response.profileUpdated){
           this.isUpdateSuccess = true;
         }
-        console.log("Patient Registration is successful");
+        console.log("Patient profile update successful");
       },
       error => {
         console.log(error)

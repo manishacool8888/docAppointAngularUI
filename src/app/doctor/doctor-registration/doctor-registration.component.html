@@ -78,6 +78,17 @@
       </div>
       <div class="col">
         <div class="form-group">
+          <label>Speciality</label>
+          <select class="form-control" [(ngModel)]="doctorDetails.speciality_name"
+                 name="speciality_name" required="required" (change)="getcityList($event.target.value)">
+                 <option *ngFor="let speciality of specialityList">{{speciality}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
           <label>Gender</label>
           <select class="form-control" [(ngModel)]="doctorDetails.gender"
                  name="gender" required="required">
@@ -86,8 +97,6 @@
           </select>
         </div>
       </div>
-    </div>
-    <div class="row">
       <div class="col">
         <div class="form-group">
           <label>Practicing From</label>
@@ -190,28 +199,27 @@
              name="alternate_email_id">
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <label>Institute Name</label>
-            <input type="text" class="form-control" [(ngModel)]="doctorDetails.institute_name"
-                   name="institute_name" required="required" minlength="5" maxlength="20">
-              <div class="valid-feedback">valid</div>
-              <div class="invalid-feedback">first name lenght must be 5 to 20 characters</div>
-          </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label>Institute Name</label>
+          <input type="text" class="form-control" [(ngModel)]="doctorDetails.institute_name"
+                  name="institute_name" required="required" minlength="5" maxlength="20">
+            <div class="valid-feedback">valid</div>
+            <div class="invalid-feedback">first name lenght must be 5 to 20 characters</div>
         </div>
-        <div class="col">
-          <div class="form-group">
-            <label>Procurement Date</label>
-            <input type="date" #procurementDate="ngModel"
-                [ngModel]="doctorDetails.procurement_date | date:'yyyy-MM-dd' " 
-                (ngModelChange)="doctorDetails.procurement_date = $event" 
-                class="form-control" name="procurement_date" required="required">
-          </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label>Procurement Date</label>
+          <input type="date" #procurementDate="ngModel"
+              [ngModel]="doctorDetails.procurement_date | date:'yyyy-MM-dd' " 
+              (ngModelChange)="doctorDetails.procurement_date = $event" 
+              class="form-control" name="procurement_date" required="required">
         </div>
       </div>
     </div>
+    
 
     <div class="text-center">
       <button type="submit" class="btn btn-info mx-3">Register</button>

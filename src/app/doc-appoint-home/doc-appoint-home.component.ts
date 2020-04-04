@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+export class ServiceResponse {
+  constructor(public message : string){ }
+}
+
 @Component({
   selector: 'app-doc-appoint-home',
   templateUrl: './doc-appoint-home.component.html',
