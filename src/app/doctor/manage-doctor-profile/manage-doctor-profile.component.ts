@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AUTHENTICATED_USER } from 'src/app/service/basic-authentication.service';
 import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
 import { DoctorServiceService } from 'src/app/service/doctor/doctor-service.service';
+import { SpecialityList } from '../doctor-registration/doctor-registration.component';
 
 export class ProfileDetails {
   constructor(
@@ -46,7 +47,7 @@ export class ManageDoctorProfileComponent implements OnInit {
   stateList : string[];
   cityList : string[];
   localityList : string[];
-  specialityList : string[];
+  specialityList : SpecialityList[];
 
   doctorDetails : ProfileDetails;
   profileUpdateResponse : ProfileUpdateResponse;
@@ -56,9 +57,9 @@ export class ManageDoctorProfileComponent implements OnInit {
               private doctorService : DoctorServiceService) { }
 
   ngOnInit() {
-
-    this.getStateList();
+    this.doctorDetails = new ProfileDetails(this.username,'','',new Date(),'',new Date(),'',0,'','','','','','','','','','',new Date());
     this.getSpecialityList();
+    this.getProfileDetails();
   }
 
   getStateList(){
@@ -100,6 +101,22 @@ export class ManageDoctorProfileComponent implements OnInit {
     this.docAppointService.retrieveSpeciality().subscribe(
       response => {
         this.specialityList=response;
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  getProfileDetails(){
+    console.log("getProfileDetails called");
+    this.doctorService.getDoctorProfile(this.username).subscribe(
+      response => {
+        this.doctorDetails=response;
+        this.getStateList();
+        this.getcityList(this.doctorDetails.state);
+        this.getLocalityList(this.doctorDetails.city);
+
       },
       error => {
         console.log(error)

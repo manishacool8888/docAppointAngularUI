@@ -28,6 +28,12 @@ export class DoctorRegDetails {
   }
 }
 
+export class SpecialityList {
+  constructor(private speciality_name : string,
+              private description : string
+              ){ }
+}
+
 export class DoctorRegistrationResponse {
   constructor(public username : string,
               public user_role :string,
@@ -45,7 +51,7 @@ export class DoctorRegistrationComponent implements OnInit {
   stateList : string[];
   cityList : string[];
   localityList : string[];
-  specialityList : string[];
+  specialityList : SpecialityList[];
   repassword : string='';
   isRegistrationDone = false;
   registrationResponse :DoctorRegistrationResponse;
@@ -97,6 +103,7 @@ export class DoctorRegistrationComponent implements OnInit {
   getSpecialityList(){
     this.docAppointService.retrieveSpeciality().subscribe(
       response => {
+        console.log(response);
         this.specialityList=response;
       },
       error => {
@@ -111,7 +118,12 @@ export class DoctorRegistrationComponent implements OnInit {
       response => {
         this.registrationResponse=response;
         this.isRegistrationDone = response.isRegistrationSuccess;
-        console.log("Doctor Registration is successful");
+        if(this.isRegistrationDone ){
+          console.log("Registration is completed successfully");
+        }else{
+          console.log("Registration failed");
+        }
+       
       },
       error => {
         console.log(error)

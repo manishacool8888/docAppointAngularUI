@@ -1,7 +1,7 @@
 .add-slot-container{
-    width:50%;
+    width:65%;
     margin:auto;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
     /* overflow:hidden; */
     border:1px #5bc0de solid;
     padding-top:10px;
@@ -13,4 +13,10 @@
 
 h5{
     color:#6463c0;
+}
+
+.add_slot_msg{
+    color:rgb(197, 25, 25);
+    font-size: smaller;
+    font-family: cursive;
 }

@@ -24,7 +24,7 @@
     <form (ngSubmit)="updateDoctorProfile()" #registerDoctorForm="ngForm" class="was-validated">
       <div class="form-group">
         <label>user name</label>
-        <input type="email" class="form-control" [(ngModel)]="doctorDetails.patient_id"
+        <input type="email" class="form-control" [(ngModel)]="doctorDetails.doctor_id"
                name="patient_id" required="required" minlength="5">
         <div class="valid-feedback">valid</div>
         <div class="invalid-feedback">please enter email id</div>       
@@ -43,9 +43,9 @@
           <div class="form-group">
             <label>Last Name</label>
             <input type="text" class="form-control" [(ngModel)]="doctorDetails.last_name"
-                   name="last_name" required="required" minlength="5" maxlength="20">
+                   name="last_name" required="required" minlength="3" maxlength="20">
               <div class="valid-feedback">valid</div>
-              <div class="invalid-feedback">last name lenght must be 5 to 20 characters</div>
+              <div class="invalid-feedback">last name lenght must be 3 to 20 characters</div>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <label>Speciality</label>
             <select class="form-control" [(ngModel)]="doctorDetails.speciality_name"
                    name="speciality_name" required="required" (change)="getcityList($event.target.value)">
-                   <option *ngFor="let speciality of specialityList">{{speciality}}</option>
+                   <option *ngFor="let speciality of specialityList">{{speciality.speciality_name}}</option>
             </select>
           </div>
         </div>
@@ -94,9 +94,9 @@
           <div class="form-group">
             <label>Consultation Fee</label>
             <input type="text" class="form-control" [(ngModel)]="doctorDetails.consultation_fee"
-                   name="consultation_fee" required="required" minlength="1" maxlength="5">
+                   name="consultation_fee" required="required" minlength="2" maxlength="5">
               <div class="valid-feedback">valid</div>
-              <div class="invalid-feedback">please enter 1 to 5 digit number</div>
+              <div class="invalid-feedback">please enter 2 to 5 digit number</div>
           </div>
         </div>
       </div>
@@ -183,28 +183,28 @@
                name="alternate_email_id">
       </div>
   
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label>Institute Name</label>
-              <input type="text" class="form-control" [(ngModel)]="doctorDetails.institute_name"
-                     name="institute_name" required="required" minlength="5" maxlength="20">
-                <div class="valid-feedback">valid</div>
-                <div class="invalid-feedback">first name lenght must be 5 to 20 characters</div>
-            </div>
+      
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>Institute Name</label>
+            <input type="text" class="form-control" [(ngModel)]="doctorDetails.institute_name"
+                    name="institute_name" required="required" minlength="2" maxlength="100">
+              <div class="valid-feedback">valid</div>
+              <div class="invalid-feedback">first name lenght must be 2 to 100 characters</div>
           </div>
-          <div class="col">
-            <div class="form-group">
-              <label>Procurement Date</label>
-              <input type="date" #procurementDate="ngModel"
-                  [ngModel]="doctorDetails.procurement_date | date:'yyyy-MM-dd' " 
-                  (ngModelChange)="doctorDetails.procurement_date = $event" 
-                  class="form-control" name="procurement_date" required="required">
-            </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Procurement Date</label>
+            <input type="date" #procurementDate="ngModel"
+                [ngModel]="doctorDetails.procurement_date | date:'yyyy-MM-dd' " 
+                (ngModelChange)="doctorDetails.procurement_date = $event" 
+                class="form-control" name="procurement_date" required="required">
           </div>
         </div>
       </div>
+      
   
       <div class="text-center">
         <button type="submit" class="btn btn-info mx-3">Update Profile</button>
