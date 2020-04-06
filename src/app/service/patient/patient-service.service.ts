@@ -4,6 +4,9 @@ import { API_URL } from 'src/app/app.constants';
 import { PatientAppointBookings } from 'src/app/patient/manage-patient-bookings/manage-patient-bookings.component';
 import { PatientRegistrationResponse } from 'src/app/patient/patient-registration/patient-registration.component';
 import { ProfileDetails, ProfileUpdateResponse } from 'src/app/patient/manage-patient-profile/manage-patient-profile.component';
+import { ServiceResponse } from 'src/app/doc-appoint-home/doc-appoint-home.component';
+import { DoctorDetails } from 'src/app/patient/search-doctor/search-doctor.component';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,11 +53,22 @@ export class PatientServiceService {
   }
 
   deleteBooking(username,booking_id){
-    return this.http.delete(`${API_URL}/api/patient/${username}/deleteBooking/${booking_id}`)
+    return this.http.delete(`${API_URL}/api/patient/${username}/deleteBooking/${booking_id}`);
   }
 
   disableAccount(username){
-    return this.http.get<string>(`${API_URL}/api/patient/${username}/disableAccount`)
+    return this.http.get<ServiceResponse>(`${API_URL}/api/patient/${username}/disableAccount`);
+  }
+ 
+  // retrieveAllDoctors(state,city,locality){
+  //   return this.http.get<DoctorDetails[]>(`${API_URL}/api/patient/Doctors/${state}/${city}/${locality}`);
+  // }
+
+  retrieveAllDoctors(state,city,locality){
+    return this.http.get<DoctorDetails[]>(`${API_URL}/api/patient/Doctors/${state}/${city}/${locality}`);
   }
 
+/*public getProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`api/products/v1/`);
+}*/
 }

@@ -26,8 +26,15 @@
   </div>
 
   <div class="add-slot-btn-container">
-    <button (click)="AddSlotToggle()" class="add-button">Add Slot</button>
-    <button (click)="AddSlotToggle()" class="cancel-button">Cancel</button>
+    <div class="row">
+      <div class="col">
+        <button (click)="AddSlotToggle()" class="add-button">Add Slot</button>
+      </div>
+      <div class="col">
+        <button (click)="AddSlotToggle()" class="cancel-button">Cancel</button>
+      </div>
+    </div>
+    
   </div>
 
   <!-- <app-add-slot *ngIf="showAddSlotComp"></app-add-slot> -->

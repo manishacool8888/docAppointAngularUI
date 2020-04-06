@@ -1,5 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
+import { PatientServiceService } from 'src/app/service/patient/patient-service.service';
+
+
+export class DoctorDetails {
+  constructor(private first_name : number,
+              private gender : string,
+              private  practicing_from : Date,
+              private consultation_fee : number,
+              private speciality_name : string,
+              private state : string,
+              private city  : string,
+              private locality : string
+              ){ }
+}
+
+// export class LocalityDetails {
+//   constructor(private state : string,
+//               private city  : string,
+//               private locality : string
+//               ){ }
+// }
 
 @Component({
   selector: 'app-search-doctor',
@@ -12,11 +33,15 @@ export class SearchDoctorComponent implements OnInit {
   cityList : string[];
   localityList : string[];
 
+ // localityDetails : LocalityDetails;
+  doctorDetailsList : DoctorDetails[];
+
   selectedState='';
   selectedCity='';
   selectedLocality='';
 
-  constructor(private docAppointService : DocAppointCommonService) { }
+  constructor(private docAppointService : DocAppointCommonService,
+              private patientService : PatientServiceService) { }
 
   ngOnInit() {
     this.getStateList();
@@ -59,7 +84,17 @@ export class SearchDoctorComponent implements OnInit {
   }
 
   seachDoctor(){
+    //this.localityDetails = new LocalityDetails(this.selectedState,this.selectedCity,this.selectedLocality);
     
+    this.patientService.retrieveAllDoctors(this.selectedState,this.selectedCity,this.selectedLocality).subscribe(
+      response => {
+        this.doctorDetailsList=response;
+        console.log(response);
+      },
+      error => {
+        console.log(error)
+      }
+    )
   }
-
+ 
 }

@@ -117,12 +117,10 @@ export class DoctorRegistrationComponent implements OnInit {
     this.doctorService.registerDoctor(this.doctorDetails).subscribe(
       response => {
         this.registrationResponse=response;
-        this.isRegistrationDone = response.isRegistrationSuccess;
-        if(this.isRegistrationDone ){
-          console.log("Registration is completed successfully");
-        }else{
-          console.log("Registration failed");
-        }
+        this.isRegistrationDone = true;
+        
+        console.log(' response.isRegistrationSuccess:'+ response.isRegistrationSuccess);
+        console.log('Registration response came');
        
       },
       error => {
