@@ -10,3 +10,55 @@
     padding-right: 10px;
 	border-radius:15px;
 }
+
+.table-hover>tbody> tr:hover{
+    background-color: rgb(135, 192, 49);
+    
+}
+
+.add-slot-btn-container{
+    width:30%;
+    margin:auto;
+    margin-bottom: 10px;
+    /* overflow:hidden; */
+    /* border:1px #5bc0de solid; */
+    padding-top:10px;
+    padding-bottom: 10px;
+    padding-left: 80px;
+    padding-right: 80px;
+	border-radius:15px;
+}
+
+.add-button{
+	background-color:grey;
+	color:#fff;
+    margin:5px;
+    margin-right: 10%;
+	padding:5px;
+	border-radius:50px;
+	/*border:none;*/
+}
+
+.add-button{
+	background:rgb(10, 107, 10);
+	color:#fff;
+}
+
+.cancel-button{
+	background-color:grey;
+	color:#fff;
+    margin:5px;
+    margin-right: 10%;
+	padding:5px;
+	border-radius:50px;
+	/*border:none;*/
+}
+
+.cancel-button:hover{
+	background:rgb(192, 40, 13);
+	color:#fff;
+}
+
+h5{
+    color:#6463c0;
+}

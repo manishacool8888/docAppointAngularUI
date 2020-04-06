@@ -1,8 +1,76 @@
 <div class="search-doctor-container">
-  <p>
-    search-doctor works!
-  </p>
-</div>
+  <h5>Looking for Doctor near you a click away !</h5>
   
+  <div class="container">
+    <form (ngSubmit)="seachDoctor()" #addSlotForm="ngForm" class="was-validated">
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label>State</label>
+            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedState"
+                    name="state" required="required" (change)="getcityList($event.target.value)">
+                    <option selected></option>
+                    <option *ngFor="let state of stateList">{{state}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class=form-group>
+            <label>City</label>
+            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedCity"
+                    name="city" required="required" (change)="getLocalityList($event.target.value)">
+                    <option selected></option>
+                    <option *ngFor="let city of cityList">{{city}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Locality</label>
+            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedLocality"
+                    name="city" required="required">
+                    <option selected></option>
+                    <option *ngFor="let locality of localityList">{{locality}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-info mx-3">Search Doctor</button>
+      </div>
+
+    </form>
+  </div>
+
+
+  <table class="table table-hover">
+    <caption>Doctor Search Result</caption>
+    <!-- <thead>
+      <tr>
+        <th>Start Time</th>
+      </tr>
+    </thead> -->
+    <tbody>
+      <tr *ngFor="let slot of bookingSlots">
+        <td>{{slot.start_time}}</td>
+        <td>{{slot.end_time}}</td>
+        <td>{{slot.meridiem_indicator}}</td>
+        <td><button (click)="deleteSlot(slot.slot_id)" class="btn btn-warning">Delete Slot</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="add-slot-btn-container">
+    <button (click)="AddSlotToggle()" class="add-button">Add Slot</button>
+    <button (click)="AddSlotToggle()" class="cancel-button">Cancel</button>
+  </div>
+
+  <!-- <app-add-slot *ngIf="showAddSlotComp"></app-add-slot> -->
+  <!-- <app-add-slot *ngIf="showAddSlotComp" (outputFromAddSlot)="bookingSlots=$event"></app-add-slot> -->
+
+  <app-add-slot *ngIf="showAddSlotComp" (outputFromAddSlot)="triggerRefreshSlots($event)"></app-add-slot>
+
+</div> 
 
 
