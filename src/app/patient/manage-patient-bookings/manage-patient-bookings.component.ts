@@ -47,9 +47,9 @@ export class ManagePatientBookingsComponent implements OnInit {
    )
  }
 
- deleteBooking(id){
-   console.log(`delete todo ${id}`)
-   this.patientService.deleteBooking(this.username,id).subscribe(
+ cancelBooking(id){
+   console.log(`cancelBooking booking ${id}`)
+   this.patientService.cancelBooking(this.username,id).subscribe(
      response => {
        console.log(response)
        this.message= `Delete of Todo ${id} Successful !`

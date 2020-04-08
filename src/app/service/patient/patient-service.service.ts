@@ -49,11 +49,11 @@ export class PatientServiceService {
   }
 
   retrieveAllBookings(username){
-    return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/getBookings/${username}`)
+    return this.http.get<PatientAppointBookings[]>(`${API_URL}/api/patient/bookings/${username}`)
   }
 
-  deleteBooking(username,booking_id){
-    return this.http.delete(`${API_URL}/api/patient/${username}/deleteBooking/${booking_id}`);
+  cancelBooking(username,booking_id){
+    return this.http.delete(`${API_URL}/api/patient/${username}/cancelBooking/${booking_id}`);
   }
 
   disableAccount(username){
@@ -65,7 +65,7 @@ export class PatientServiceService {
   // }
 
   retrieveAllDoctors(state,city,locality){
-    return this.http.get<DoctorDetails[]>(`${API_URL}/api/patient/Doctors/${state}/${city}/${locality}`);
+    return this.http.get<DoctorDetails[]>(`${API_URL}/api/patient/Doctors/state/${state}/city/${city}/locality/${locality}/search`);
   }
 
 /*public getProducts(): Observable<Product[]> {

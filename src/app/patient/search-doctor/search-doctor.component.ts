@@ -36,9 +36,9 @@ export class SearchDoctorComponent implements OnInit {
  // localityDetails : LocalityDetails;
   doctorDetailsList : DoctorDetails[];
 
-  selectedState='';
-  selectedCity='';
-  selectedLocality='';
+  selectedState=' ';
+  selectedCity=' ';
+  selectedLocality=' ';
 
   constructor(private docAppointService : DocAppointCommonService,
               private patientService : PatientServiceService) { }
