@@ -19,7 +19,8 @@
             <label>City : </label>
             <select class="mdb-select-md md-form colorful-select dropdown-info"  [(ngModel)]="selectedCity"
                     name="city" required="required" (change)="getLocalityList($event.target.value)">
-                    <option selected>{{cityList}}</option>
+                    <!-- <option selected>{{selectedCity}}</option> -->
+                    <option>{{blankOption}}</option>
                     <option *ngFor="let city of cityList">{{city}}</option>
             </select>
           </div>
@@ -29,8 +30,18 @@
             <label>Locality : </label>
             <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedLocality"
                     name="city" required="required">
-                    <option selected>{{selectedLocality}}</option>
+                    <option>{{blankOption}}</option>
                     <option *ngFor="let locality of localityList">{{locality}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-group">
+            <label>Specialiaty : </label>
+            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedSpeciality"
+                    name="city" required="required">
+                    <option>{{blankOption}}</option>
+                    <option *ngFor="let specialiaty of specialityList">{{specialiaty.speciality_name}}</option>
             </select>
           </div>
         </div>
@@ -43,20 +54,45 @@
     </form>
   </div>
 
-
-  <table class="table table-hover">
+  <table class="table table-hover" on-mouseleave="hoveredIndex=null">
     <caption>Doctor Search Result</caption>
-    <!-- <thead>
-      <tr>
-        <th>Start Time</th>
-      </tr>
-    </thead> -->
     <tbody>
-      <tr *ngFor="let slot of bookingSlots">
-        <td>{{slot.start_time}}</td>
-        <td>{{slot.end_time}}</td>
-        <td>{{slot.meridiem_indicator}}</td>
-        <td><button (click)="deleteSlot(slot.slot_id)" class="btn btn-warning">Delete Slot</button></td>
+      <tr *ngFor="let doctorDetail of doctorDetailsList; let index=index" on-mouseover="hoveredIndex=index">
+        <td>
+          <div class="row">
+            <div class="col">
+              Doctor Name : {{doctorDetail.first_name}}
+            </div>
+            <div class="col">
+              Speciality : {{doctorDetail.speciality_name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Gender : {{doctorDetail.gender}}
+            </div>
+            <div class="col">
+              Practicing From : {{doctorDetail.practicing_from}}
+            </div>
+            <div class="col">
+              Consultation Fee : {{doctorDetail.consultation_fee}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              State : {{doctorDetail.state}}
+            </div>
+            <div class="col">
+              City : {{doctorDetail.city}}
+            </div>
+            <div class="col">
+              Locality : {{doctorDetail.locality}}
+            </div>
+          </div>
+        </td>
+        <td><button (click)="navigateBookingPage(doctorDetail.doctor_id)" 
+          *ngIf="index=hoveredIndex"
+          class="btn btn-info btn-sm">Book Appointment</button></td>
       </tr>
     </tbody>
   </table>

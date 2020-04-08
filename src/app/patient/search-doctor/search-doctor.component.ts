@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
 import { PatientServiceService } from 'src/app/service/patient/patient-service.service';
+import { SpecialityList } from 'src/app/doctor/doctor-registration/doctor-registration.component';
 
 
-export class DoctorDetails {
-  constructor(private first_name : number,
+export class DoctorSearchDetails {
+  constructor(private doctor_id : string,
+              private first_name : number,
               private gender : string,
-              private  practicing_from : Date,
+              private practicing_from : Date,
               private consultation_fee : number,
               private speciality_name : string,
               private state : string,
@@ -14,13 +16,6 @@ export class DoctorDetails {
               private locality : string
               ){ }
 }
-
-// export class LocalityDetails {
-//   constructor(private state : string,
-//               private city  : string,
-//               private locality : string
-//               ){ }
-// }
 
 @Component({
   selector: 'app-search-doctor',
@@ -32,13 +27,16 @@ export class SearchDoctorComponent implements OnInit {
   stateList : string[];
   cityList : string[];
   localityList : string[];
+  specialityList : SpecialityList[];
+  blankOption = ' ';
 
  // localityDetails : LocalityDetails;
-  doctorDetailsList : DoctorDetails[];
+  doctorDetailsList : DoctorSearchDetails[];
 
-  selectedState=' ';
-  selectedCity=' ';
+  selectedState = ' ';
+  selectedCity = ' ';
   selectedLocality=' ';
+  selectedSpeciality = ' ';
 
   constructor(private docAppointService : DocAppointCommonService,
               private patientService : PatientServiceService) { }
@@ -83,10 +81,22 @@ export class SearchDoctorComponent implements OnInit {
     )
   }
 
+  getSpecialityList(){
+    this.docAppointService.retrieveSpeciality().subscribe(
+      response => {
+        this.specialityList=response;
+        console.log("specialityList is retrieved");
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
   seachDoctor(){
     //this.localityDetails = new LocalityDetails(this.selectedState,this.selectedCity,this.selectedLocality);
     
-    this.patientService.retrieveAllDoctors(this.selectedState,this.selectedCity,this.selectedLocality).subscribe(
+    this.patientService.retrieveAllDoctors(this.selectedState,this.selectedCity,this.selectedLocality,this.selectedSpeciality).subscribe(
       response => {
         this.doctorDetailsList=response;
         console.log(response);
@@ -95,6 +105,10 @@ export class SearchDoctorComponent implements OnInit {
         console.log(error)
       }
     )
+  }
+
+  navigateBookingPage(doctor_id){
+    console.log("navigate to booking page called");
   }
  
 }
