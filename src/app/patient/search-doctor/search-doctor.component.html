@@ -6,9 +6,9 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label>State : </label>
-            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedState"
-                    name="state" required="required" (change)="getcityList($event.target.value)">
+            <label for="selectedState">State : </label>
+            <select style="width: 85%" class="custom-select-sm" [(ngModel)]="selectedState"
+                    name="selectedState" required="required" (change)="getcityList($event.target.value)">
                     <option selected>{{selectedState}}</option>
                     <option *ngFor="let state of stateList">{{state}}</option>
             </select>
@@ -16,10 +16,9 @@
         </div>
         <div class="col">
           <div class=form-group>
-            <label>City : </label>
-            <select class="mdb-select-md md-form colorful-select dropdown-info"  [(ngModel)]="selectedCity"
-                    name="city" required="required" (change)="getLocalityList($event.target.value)">
-                    <!-- <option selected>{{selectedCity}}</option> -->
+            <label for="selectedCity" class="mx-3">City : </label>
+            <select style="width: 80%" class="custom-select-sm mx-3"  [(ngModel)]="selectedCity"
+                    name="selectedCity" required="required" (change)="getLocalityList($event.target.value)">
                     <option>{{blankOption}}</option>
                     <option *ngFor="let city of cityList">{{city}}</option>
             </select>
@@ -27,9 +26,9 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label>Locality : </label>
-            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedLocality"
-                    name="city" required="required">
+            <label for="selectedLocality">Locality : </label>
+            <select style="width: 80%" class="custom-select-sm" [(ngModel)]="selectedLocality"
+                    name="selectedLocality" required="required">
                     <option>{{blankOption}}</option>
                     <option *ngFor="let locality of localityList">{{locality}}</option>
             </select>
@@ -37,9 +36,9 @@
         </div>
         <div class="col">
           <div class="form-group">
-            <label>Specialiaty : </label>
-            <select class="mdb-select-md md-form colorful-select dropdown-info" [(ngModel)]="selectedSpeciality"
-                    name="city" required="required">
+            <label for="selectedSpeciality">Specialiaty : </label>
+            <select style="width: 80%" class="custom-select-sm" [(ngModel)]="selectedSpeciality"
+                    name="selectedSpeciality" required="required">
                     <option>{{blankOption}}</option>
                     <option *ngFor="let specialiaty of specialityList">{{specialiaty.speciality_name}}</option>
             </select>
@@ -48,55 +47,72 @@
       </div>
 
       <div class="text-center">
-        <button type="submit" class="btn btn-info mx-3">Search Doctor</button>
+        <button type="submit" class="btn btn-info btn-sm mx-3">Search Doctor</button>
       </div>
 
     </form>
   </div>
 
-  <table class="table table-hover" on-mouseleave="hoveredIndex=null">
-    <caption>Doctor Search Result</caption>
-    <tbody>
-      <tr *ngFor="let doctorDetail of doctorDetailsList; let index=index" on-mouseover="hoveredIndex=index">
-        <td>
-          <div class="row">
-            <div class="col">
-              Doctor Name : {{doctorDetail.first_name}}
-            </div>
-            <div class="col">
-              Speciality : {{doctorDetail.speciality_name}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              Gender : {{doctorDetail.gender}}
-            </div>
-            <div class="col">
-              Practicing From : {{doctorDetail.practicing_from}}
-            </div>
-            <div class="col">
-              Consultation Fee : {{doctorDetail.consultation_fee}}
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              State : {{doctorDetail.state}}
-            </div>
-            <div class="col">
-              City : {{doctorDetail.city}}
-            </div>
-            <div class="col">
-              Locality : {{doctorDetail.locality}}
-            </div>
-          </div>
-        </td>
-        <td><button (click)="navigateBookingPage(doctorDetail.doctor_id)" 
-          *ngIf="index=hoveredIndex"
-          class="btn btn-info btn-sm">Book Appointment</button></td>
-      </tr>
-    </tbody>
-  </table>
-
+  <div class="container">
+    <table class="table table-hover" on-mouseleave="hoveredIndex=null">
+      <!-- <table class="table table-hover"> -->
+        <caption>Doctor Search Result</caption>
+        <tbody>
+          <tr *ngFor="let doctorDetail of doctorDetailsList; let index=index" 
+               on-mouseover="hoveredIndex=index">
+          <!-- <tr *ngFor="let doctorDetail of doctorDetailsList">  -->
+            <td style="width: 80%">
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <label id="titles">
+                      Doctor Name :
+                    </label>
+                    <label id="content">
+                      {{doctorDetail.first_name}}
+                    </label> 
+                  </div>
+                  <div class="col">
+                    Speciality : {{doctorDetail.speciality_name}}
+                  </div>
+                </div>
+              </div>
+              <div clas="container">
+                <div class="row">
+                  <div class="col">
+                    Gender : {{doctorDetail.gender}}
+                  </div>
+                  <div class="col">
+                    <label>Practicing From :</label>
+                    <label>{{doctorDetail.practicing_from  | date: 'dd-MM-yyyy' }}</label>
+                  </div>
+                  <div class="col">
+                    Consultation Fee : {{doctorDetail.consultation_fee}}
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    State : {{doctorDetail.state}}
+                  </div>
+                  <div class="col">
+                    City : {{doctorDetail.city}}
+                  </div>
+                  <div class="col">
+                    Locality : {{doctorDetail.locality}}
+                  </div>
+                </div>
+              </div>  
+            </td>
+            <td style="width: 20%">
+              <button  *ngIf="index==hoveredIndex" (click)="navigateBookingPage(doctorDetail.doctor_id)" 
+              class="btn btn-info btn-sm my-4">Book Appointment</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 </div> 
 
 

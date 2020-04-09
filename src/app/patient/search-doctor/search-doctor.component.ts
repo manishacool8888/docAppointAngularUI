@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DocAppointCommonService } from 'src/app/service/data/doc-appoint-common.service';
 import { PatientServiceService } from 'src/app/service/patient/patient-service.service';
 import { SpecialityList } from 'src/app/doctor/doctor-registration/doctor-registration.component';
+import { Router } from '@angular/router';
 
 
 export class DoctorSearchDetails {
@@ -33,16 +34,19 @@ export class SearchDoctorComponent implements OnInit {
  // localityDetails : LocalityDetails;
   doctorDetailsList : DoctorSearchDetails[];
 
+  hoveredIndex = '';
   selectedState = ' ';
   selectedCity = ' ';
   selectedLocality=' ';
   selectedSpeciality = ' ';
 
   constructor(private docAppointService : DocAppointCommonService,
-              private patientService : PatientServiceService) { }
+              private patientService : PatientServiceService,
+              private router : Router) { }
 
   ngOnInit() {
     this.getStateList();
+    this.getSpecialityList();
   }
 
 
@@ -109,6 +113,7 @@ export class SearchDoctorComponent implements OnInit {
 
   navigateBookingPage(doctor_id){
     console.log("navigate to booking page called");
+      this.router.navigate(['bookAppointment',doctor_id])
   }
  
 }

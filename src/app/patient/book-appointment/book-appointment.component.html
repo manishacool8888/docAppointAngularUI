@@ -1,6 +1,104 @@
-<div class="book-appointment-box">
-  <p>
-    book-appointment works!
-  </p>
-</div>
+<div class="book-appointment-container">
 
+  <div class="container">
+    <h5>Doctor Profile</h5>
+
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <label id="titles">
+            Doctor Name :
+          </label>
+          <label id="content">
+            {{doctorProfile.first_name}}
+          </label> 
+        </div>
+        <div class="col">
+          Speciality : {{doctorProfile.speciality_name}}
+        </div>
+      </div>
+    </div>
+    <div clas="container">
+      <div class="row">
+        <div class="col">
+          Gender : {{doctorProfile.gender}}
+        </div>
+        <div class="col">
+          <label>Practicing From :</label>
+          <label>{{doctorProfile.practicing_from  | date: 'dd-MM-yyyy' }}</label>
+        </div>
+        <div class="col">
+          Consultation Fee : {{doctorProfile.consultation_fee}}
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          State : {{doctorProfile.state}}
+        </div>
+        <div class="col">
+          City : {{doctorProfile.city}}
+        </div>
+        <div class="col">
+          Locality : {{doctorProfile.locality}}
+        </div>
+      </div>
+    </div> 
+  </div>
+
+  <div class="container">
+    <form (ngSubmit)="bookAppointment()" #bookAppointmentForm="ngForm" class="was-validated">
+
+      <div class="form-group my-5">
+        <label for="booking_date" id="input-title">Appointment Date</label>
+        <input type="date" style="width: 30%"
+            [ngModel]="bookingDetails.booking_date | date:'yyyy-MM-dd' " 
+            (ngModelChange)="bookingDetails.booking_date = $event"
+            (change)="getSlots(bookingDetails.booking_date)"
+            class="form-control" name="booking_date" required="required">
+      </div>
+
+      <div class="form-group">
+        <label  id="input-title">Select Booking Slot</label>
+        <table class="table table-hover">
+          <caption>Booking Slots</caption>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>AM/PM</th>
+              <th>Available</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let slot of slotList">
+              <td>
+                <input type="radio" name="slotRadio" value="slot.slot_id" 
+                    (click)="setSlotIdinRequest(slot.slot_id)">
+              </td>
+              <td>{{slot.start_time}}</td>
+              <td>{{slot.end_time}}</td>
+              <td>{{slot.meridiem_indicator}}</td>
+              <td>{{slot.isAvailable}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="form-group my-5">
+        <label for="symptom_desc"  id="input-title">Symptom description</label>
+        <textarea [(ngModel)]="bookingDetails.symptom_desc"
+                  class="form-control" rows="4" name="symptom_desc" minlength="4" required="required">
+          <div class="valid-feedback">valid</div>
+          <div class="invalid-feedback">Please enter atleast 4 characters</div>      
+        </textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-info mx-3">Book Appointment</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,7 +1,8 @@
-.book-appointment-box{
+.book-appointment-container{
     width:90%;
     margin:auto;
     margin-bottom: 10px;
+    margin-top: 10px;
     /* overflow:hidden; */
     border:1px #5bc0de solid;
     padding-top:10px;
@@ -9,4 +10,31 @@
     padding-left: 10px;
     padding-right: 10px;
 	border-radius:15px;
+}
+
+.table-hover>tbody> tr:hover{
+    background-color: rgb(135, 192, 49);
+    
+}
+
+#titles{
+    color: purple;
+    font-style: italic;
+	box-sizing: border-box;
+}
+
+#content{
+    color:rgb(27, 27, 167);
+	box-sizing: border-box;
+}
+
+#input-title{
+    color: purple;
+    font-weight: bold;
+	box-sizing: border-box;
+}
+
+
+h3{
+    color:purple;
 }

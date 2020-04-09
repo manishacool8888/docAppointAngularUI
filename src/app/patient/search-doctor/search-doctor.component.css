@@ -12,7 +12,7 @@
 }
 
 .locality-select-container{
-    width:80%;
+    width:95%;
     margin:auto;
     margin-bottom: 10px;
     /* overflow:hidden; */
@@ -25,13 +25,12 @@
 }
 
 
-
 .table-hover>tbody> tr:hover{
     background-color: rgb(135, 192, 49);
     
 }
 
-.add-slot-btn-container{
+.book-btn-container{
     width:30%;
     margin:auto;
     margin-bottom: 10px;
@@ -44,19 +43,15 @@
 	border-radius:15px;
 }
 
-.add-button{
-	background-color:grey;
-	color:#fff;
-    margin:5px;
-    margin-right: 10%;
-	padding:5px;
-	border-radius:50px;
-	/*border:none;*/
+#titles{
+    color: purple;
+    font-style: italic;
+	box-sizing: border-box;
 }
 
-.add-button{
-	background:rgb(10, 107, 10);
-	color:#fff;
+#content{
+    color:rgb(27, 27, 167);
+	box-sizing: border-box;
 }
 
 .cancel-button{

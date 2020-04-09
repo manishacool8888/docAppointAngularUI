@@ -6,6 +6,7 @@ import { DocAppointBookings } from 'src/app/doctor/manage-doctor-bookings/manage
 import { ProfileUpdateResponse, ProfileDetails } from 'src/app/doctor/manage-doctor-profile/manage-doctor-profile.component';
 import { DoctorRegistrationResponse } from 'src/app/doctor/doctor-registration/doctor-registration.component';
 import { ServiceResponse } from 'src/app/doc-appoint-home/doc-appoint-home.component';
+import { SlotAvailability } from 'src/app/patient/book-appointment/book-appointment.component';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class DoctorServiceService {
 
   retrieveAllSlots(username){
     return this.http.get<SlotDetails[]>(`${API_URL}/api/doctor/slots/${username}`)
+  }
+
+  retieveSlotAvailability(username,date){
+    return this.http.get<SlotAvailability[]>(`${API_URL}/api/doctor/slotsAvl/${username}/date/${date}`)
   }
 
   addSlot(newSlotDetails){

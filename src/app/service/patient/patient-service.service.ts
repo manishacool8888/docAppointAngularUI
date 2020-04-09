@@ -10,6 +10,7 @@ import { DoctorSearchDetails } from 'src/app/patient/search-doctor/search-doctor
 @Injectable({
   providedIn: 'root'
 })
+
 export class PatientServiceService {
 
   constructor( 
@@ -26,6 +27,10 @@ export class PatientServiceService {
 
   updatePatientProfile(profileDetails){
     return this.http.post<ProfileUpdateResponse>(`${API_URL}/api/patient/updateProfile`,profileDetails)
+  }
+
+  bookAppointment(bookingDetails){
+    return this.http.post<ServiceResponse>(`${API_URL}/api/patient/bookAppointment`,bookingDetails)
   }
 
   retrieveAllBookings(username){

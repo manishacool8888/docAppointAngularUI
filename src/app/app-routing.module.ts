@@ -15,6 +15,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { RegisterComponent } from './register/register.component';
 import { DoctorRegistrationComponent } from './doctor/doctor-registration/doctor-registration.component';
+import { BookAppointmentComponent } from './patient/book-appointment/book-appointment.component';
 
 const routes: Routes = [
   
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path : 'doctorRegistration',component: DoctorRegistrationComponent},
   { path : 'patientHome',component:PatientHomeComponent},
   { path : 'patientRegistration',component:PatientRegistrationComponent},
+  { path : 'bookAppointment/:doctor_id',component:BookAppointmentComponent},
   ////////////////////////////////////////
   { path : 'welcome/:name',component:WelcomeComponent},
   { path : 'todos',component:ListTodosComponent, canActivate : [RouteGuardService] },
