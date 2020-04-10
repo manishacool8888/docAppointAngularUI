@@ -29,6 +29,10 @@ export class PatientServiceService {
     return this.http.post<ProfileUpdateResponse>(`${API_URL}/api/patient/updateProfile`,profileDetails)
   }
 
+  retrieveAllDoctors(state,city,locality,speciality){
+    return this.http.get<DoctorSearchDetails[]>(`${API_URL}/api/patient/Doctors/state/${state}/city/${city}/locality/${locality}/speciality/${speciality}/search`);
+  }
+
   bookAppointment(bookingDetails){
     return this.http.post<ServiceResponse>(`${API_URL}/api/patient/bookAppointment`,bookingDetails)
   }
@@ -44,9 +48,5 @@ export class PatientServiceService {
   disableAccount(username){
     return this.http.get<ServiceResponse>(`${API_URL}/api/patient/${username}/disableAccount`);
   }
- 
-  retrieveAllDoctors(state,city,locality,speciality){
-    return this.http.get<DoctorSearchDetails[]>(`${API_URL}/api/patient/Doctors/state/${state}/city/${city}/locality/${locality}/speciality/${speciality}/search`);
-  }
-
+  
 }
