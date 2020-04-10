@@ -65,24 +65,21 @@
               <div class="container">
                 <div class="row">
                   <div class="col">
-                    <label id="titles">
-                      Doctor Name :
-                    </label>
-                    <label id="content">
-                      {{doctorDetail.first_name}}
-                    </label> 
+                    <label id="titles">Doctor Name :</label>
+                    <label id="content"> {{doctorDetail.first_name}} </label> 
                   </div>
                   <div class="col">
-                    Speciality : {{doctorDetail.speciality_name}}
+                    <label id="titles"> Speciality : </label>
+                    <label id="content"> {{doctorDetail.speciality_name}} </label>
+                  </div>
+                  <div class="col">
+                    Gender : {{doctorDetail.gender}}
                   </div>
                 </div>
               </div>
               <div clas="container">
                 <div class="row">
-                  <div class="col">
-                    Gender : {{doctorDetail.gender}}
-                  </div>
-                  <div class="col">
+                  <div class="col mx-3">
                     <label>Practicing From :</label>
                     <label>{{doctorDetail.practicing_from  | date: 'dd-MM-yyyy' }}</label>
                   </div>

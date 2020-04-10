@@ -36,7 +36,7 @@ export class BookAppointmentComponent implements OnInit {
   doctorProfile : ProfileDetails;
   bookingDetails : BookingDetails;
   slotList : SlotAvailability[];
-  bookingConfirmation : string;
+  isAppointmentBooked = false;
   username = sessionStorage.getItem(AUTHENTICATED_USER);
 
   constructor(private router : Router,
@@ -69,17 +69,20 @@ export class BookAppointmentComponent implements OnInit {
     console.log("book appointment called");
     this.patientService.bookAppointment(this.bookingDetails).subscribe(
       response=>{
+        console.log(response);
 
-        this.bookingConfirmation = response.message;
-        // this.router.navigate(['patientHome'])
+        if(response.message==="success"){
+          this.isAppointmentBooked = true;
+        }
+        
       },
       error=>{
         console.log(error);
       }
     )
   }
-
-  getSlots(date){
+  
+  getSlots(date : Date){
     console.log('date from event is :'+date);
 
     this.doctorService.retieveSlotAvailability(this.doctor_id,date).subscribe(
