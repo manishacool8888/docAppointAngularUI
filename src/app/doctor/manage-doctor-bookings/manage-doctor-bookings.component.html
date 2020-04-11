@@ -1,13 +1,12 @@
 <div class="manage-doctor-booking-container">
   <h5>{{user_first_name}}'s Bookings</h5>
-  <div class="alert alert-success" *ngIf='message'>{{messageFromService}}</div>
+  <div class="alert alert-success" *ngIf='isBookingCancelled'>Booking is cancelled</div>
   
   <div class="container">
-    <table class="table">
+    <table class="table table-hover">
       <caption>My Bookings</caption>
       <thead>
         <tr>
-          <th>Booking ID</th>
           <th>Patient Name</th>
           <th>For Speciality</th>
           <th>Booking Date</th>
@@ -22,8 +21,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let booking of appointBookingItems">
-          <td>{{booking.booking_id}}</td>
-          <td>{{booking.first_name}}</td>
+          <td id="something">{{booking.first_name}}</td>
           <td>{{booking.speciality_name}}</td>
           <td>{{booking.booking_date | date | uppercase}}</td>
           <td>{{booking.start_time}}</td>
@@ -32,7 +30,7 @@
           <td>{{booking.symptom_desc}}</td>
           <td>{{booking.cancelled}}</td>
           <td>{{booking.cancelled_by}}</td>
-          <td><button (click)="cancelBooking(booking.bookingId)" class="btn btn-warning">Cancel Booking</button></td>
+          <td><button (click)="cancelBooking(booking.booking_id)" class="btn btn-sm btn-warning">Cancel Booking</button></td>
         </tr>
       </tbody>
     </table>

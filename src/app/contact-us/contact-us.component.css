@@ -1,9 +1,9 @@
 #contact-showcase{
-	background-image:url('src/assets/images/show-case.jpg');
+	background-image:url('src/assets/images/contact.jpg');
 	background-size:100% 100%;
 	--background-size:cover;
 	min-height:250px;
 	margin-bottom:30px;
-    text-align: center;
+    text-align:center ;
     
 }

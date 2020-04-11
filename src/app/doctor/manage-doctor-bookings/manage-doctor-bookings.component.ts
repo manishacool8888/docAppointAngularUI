@@ -27,7 +27,7 @@ export class ManageDoctorBookingsComponent implements OnInit {
   appointBookingItems: DocAppointBookings[]
   username = sessionStorage.getItem(AUTHENTICATED_USER)
   user_first_name = sessionStorage.getItem(USER_FIRST_NAME)
-  messageFromWs = '';
+  isBookingCancelled = false;
 
   constructor(private doctorService : DoctorServiceService) { }
 
@@ -51,7 +51,10 @@ export class ManageDoctorBookingsComponent implements OnInit {
     this.doctorService.cancelBooking(this.username,booking_id).subscribe(
       response => {
         console.log(response);
-        this.messageFromWs = response.message;
+
+        if(response.message==="success"){
+        this.isBookingCancelled = true;
+        }
         this.refreshBookings();
       },
       error => {

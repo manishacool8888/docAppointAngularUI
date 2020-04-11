@@ -1,7 +1,7 @@
 <div class="manage-patient-booking-container">
   <h5>{{user_first_name}}'s Bookings</h5>
   <div class="alert alert-success" *ngIf='isCancelled'>Booking cancelled sucessfully</div>
-  
+    
   <div class="container">
     <table class="table table-hover" on-mouseleave="hoveredIndex=null">
       <caption>My Bookings</caption>
@@ -18,7 +18,7 @@
           <th>Cancelled By</th>
           <th></th>
         </tr>
-      </thead>
+      </thead> 
       <tbody>
         <tr *ngFor="let booking of appointBookingItems ; let index=index" 
         on-mouseover="hoveredIndex=index">
