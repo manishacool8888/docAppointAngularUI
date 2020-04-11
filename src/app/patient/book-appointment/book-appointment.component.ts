@@ -73,6 +73,7 @@ export class BookAppointmentComponent implements OnInit {
 
         if(response.message==="success"){
           this.isAppointmentBooked = true;
+          this.getSlots(this.bookingDetails.booking_date);
         }
         
       },

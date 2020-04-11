@@ -42,7 +42,7 @@ export class PatientServiceService {
   }
 
   cancelBooking(username,booking_id){
-    return this.http.delete(`${API_URL}/api/patient/${username}/cancelBooking/${booking_id}`);
+    return this.http.delete<ServiceResponse>(`${API_URL}/api/patient/${username}/cancelBooking/${booking_id}`);
   }
 
   disableAccount(username){

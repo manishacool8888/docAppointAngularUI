@@ -1,5 +1,5 @@
 .manage-patient-booking-container{
-    width:90%;
+    width:100%;
     margin:auto;
     margin-bottom: 10px;
     /* overflow:hidden; */
@@ -9,6 +9,11 @@
     padding-left: 10px;
     padding-right: 10px;
 	border-radius:15px;
+}
+
+.table-hover>tbody> tr:hover{
+    background-color: rgb(135, 192, 49);
+    
 }
 
 h5{

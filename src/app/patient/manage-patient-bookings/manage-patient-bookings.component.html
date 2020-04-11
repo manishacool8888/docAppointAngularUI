@@ -1,13 +1,12 @@
 <div class="manage-patient-booking-container">
   <h5>{{user_first_name}}'s Bookings</h5>
-  <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+  <div class="alert alert-success" *ngIf='isCancelled'>Booking cancelled sucessfully</div>
   
   <div class="container">
-    <table class="table">
+    <table class="table table-hover" on-mouseleave="hoveredIndex=null">
       <caption>My Bookings</caption>
       <thead>
         <tr>
-          <th>Booking ID</th>
           <th>Doctor Name</th>
           <th>Speciality</th>
           <th>Booking Date</th>
@@ -17,22 +16,25 @@
           <th>Symptom Desc.</th>
           <th>Cancelled</th>
           <th>Cancelled By</th>
-          <th>Delete</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let booking of appointBookingItems">
-          <td>{{booking.bookingId}}</td>
-          <td>{{booking.doctorName}}</td>
-          <td>{{booking.speciality}}</td>
-          <td>{{booking.bookingDate | date | uppercase}}</td>
-          <td>{{booking.startTime}}</td>
-          <td>{{booking.endTime}}</td>
+        <tr *ngFor="let booking of appointBookingItems ; let index=index" 
+        on-mouseover="hoveredIndex=index">
+          <td>{{booking.first_name}}</td>
+          <td>{{booking.speciality_name}}</td>
+          <td>{{booking.booking_date | date | uppercase}}</td>
+          <td>{{booking.start_time}}</td>
+          <td>{{booking.end_time}}</td>
           <td>{{booking.meridiem_indicator}}</td>
-          <td>{{booking.symptomDesc}}</td>
+          <td>{{booking.symptom_desc}}</td>
           <td>{{booking.cancelled}}</td>
-          <td>{{booking.cancelledBy}}</td>
-          <td><button (click)="deleteBooking(booking.bookingId)" class="btn btn-warning">Cancel Booking</button></td>
+          <td>{{booking.cancelled_by}}</td>
+          <td style="width: 10%">
+            <button *ngIf="index==hoveredIndex" (click)="cancelBooking(booking.booking_id)" 
+            class="btn btn-sm btn-warning">Cancel Booking</button>
+          </td>
         </tr>
       </tbody>
     </table>

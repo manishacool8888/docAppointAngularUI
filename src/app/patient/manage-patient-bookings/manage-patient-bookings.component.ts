@@ -25,7 +25,7 @@ export class PatientAppointBookings {
 
 export class ManagePatientBookingsComponent implements OnInit {
 
-  message : string
+  isCancelled = false;
   appointBookingItems: PatientAppointBookings[]
   username = sessionStorage.getItem(AUTHENTICATED_USER)
   user_first_name = sessionStorage.getItem(USER_FIRST_NAME)
@@ -47,12 +47,15 @@ export class ManagePatientBookingsComponent implements OnInit {
    )
  }
 
- cancelBooking(id){
-   console.log(`cancelBooking booking ${id}`)
-   this.patientService.cancelBooking(this.username,id).subscribe(
+ cancelBooking(booking_id){
+   console.log(`cancelBooking booking for booking_id: ${booking_id}`)
+   this.patientService.cancelBooking(this.username,booking_id).subscribe(
      response => {
+
        console.log(response)
-       this.message= `Delete of Todo ${id} Successful !`
+       if(response.message==="success"){
+        this.isCancelled = true;
+      }
 
        this.refreshBookings();
      },
